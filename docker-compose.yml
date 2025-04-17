@@ -10,17 +10,26 @@ services:
       - MONGO_INITDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
     volumes:
-      - /opt/mongodb-data:/data/db
+      - mongodb-data:/data/db
     deploy:
-      mode: replicated
       replicas: 3
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
         window: 120s
+
+volumes:
+  mongodb-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /opt/mongodb-data
+      o: bind
+
 secrets:
   MONGO_INITDB_ROOT_USERNAME:
     external: true
   MONGO_INITDB_ROOT_PASSWORD:
     external: true
+
