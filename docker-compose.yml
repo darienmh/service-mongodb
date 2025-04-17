@@ -1,5 +1,5 @@
 services:
-  mongo-prod:
+  mongodb:
     image: mongo
     ports:
       - 6050:27017
