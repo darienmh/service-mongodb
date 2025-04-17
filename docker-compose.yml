@@ -12,10 +12,13 @@ services:
     volumes:
       - /opt/mongodb-data:/data/db
     deploy:
+      mode: replicated
       replicas: 3
-      placement:
-        constraints:
-          - node.labels.node.propose==database
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
 secrets:
   MONGO_INITDB_ROOT_USERNAME:
     external: true
