@@ -21,11 +21,8 @@ services:
 
 volumes:
   mongodb-data:
+    name: mongodb-data
     driver: local
-    driver_opts:
-      type: none
-      device: /opt/mongodb-data
-      o: bind
 
 secrets:
   MONGO_INITDB_ROOT_USERNAME:
