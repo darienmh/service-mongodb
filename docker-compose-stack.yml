@@ -1,0 +1,32 @@
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 6050:27017
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_ROOT_USERNAME_FILE=/run/secrets/MONGO_INITDB_ROOT_USERNAME
+    secrets:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+    volumes:
+      - mongodb-data:/data/db
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
+    driver: local
+
+secrets:
+  MONGO_INITDB_ROOT_USERNAME:
+    external: true
+  MONGO_INITDB_ROOT_PASSWORD:
+    external: true
+
