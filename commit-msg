@@ -1,0 +1,32 @@
+#!/bin/sh
+# Git hook to validate conventional commits
+
+# Get the commit message
+commit_msg=$(cat "$1")
+
+# Conventional commit regex pattern
+conventional_pattern="^(feat|fix|docs|style|refactor|perf|test|chore)(\(.+\))?: .+"
+
+# Check if commit message matches conventional format
+if ! echo "$commit_msg" | grep -qE "$conventional_pattern"; then
+    echo "❌ Invalid commit message format!"
+    echo ""
+    echo "Please use conventional commit format:"
+    echo "  <type>(<scope>): <description>"
+    echo ""
+    echo "Types: feat, fix, docs, style, refactor, perf, test, chore"
+    echo ""
+    echo "Examples:"
+    echo "  feat: add new feature"
+    echo "  fix: resolve bug"
+    echo "  docs: update documentation"
+    echo "  refactor: improve code structure"
+    echo ""
+    echo "Your commit message:"
+    echo "  $commit_msg"
+    echo ""
+    exit 1
+fi
+
+echo "✅ Commit message follows conventional format"
+exit 0 

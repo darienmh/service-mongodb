@@ -1,0 +1,50 @@
+# Cursor Rules for Conventional Commits
+
+## Git Commit Messages
+Always use conventional commit format for all commit messages:
+
+### Format:
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types:
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools and libraries such as documentation generation
+
+### Examples:
+- `feat: add user authentication system`
+- `fix: resolve database connection timeout`
+- `docs: update README with installation instructions`
+- `refactor: simplify database backup script`
+- `chore: update dependencies to latest versions`
+
+### Rules:
+1. Always start with a type in lowercase
+2. Use imperative mood ("add" not "added")
+3. Keep description under 50 characters
+4. Use present tense
+5. Don't capitalize first letter
+6. No period at the end
+
+## Code Style
+- Use English for all comments, variable names, and documentation
+- Follow consistent naming conventions
+- Add meaningful comments for complex logic
+- Use descriptive variable and function names
+
+## File Organization
+- Keep related files together
+- Use clear, descriptive file names
+- Organize scripts by functionality
+- Maintain consistent directory structure 
