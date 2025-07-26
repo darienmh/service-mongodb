@@ -1,6 +1,5 @@
 services:
   mongodb:
-    container_name: global_mongodb
     image: mongo
     env_file:
       - .env

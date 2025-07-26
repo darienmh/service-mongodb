@@ -6,12 +6,12 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Cargar variables del archivo .env
+# Load variables from .env file
 if [ -f .env ]; then
     export $(grep -v '^#' .env | xargs)
-    echo "${GREEN}Variables de entorno cargadas desde .env${NC}"
+    echo "${GREEN}Environment variables loaded from .env${NC}"
 else
-    echo "${RED}Error: No se encontró el archivo .env${NC}"
+    echo "${RED}Error: .env file not found${NC}"
     exit 1
 fi
 

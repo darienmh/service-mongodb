@@ -1,8 +1,12 @@
 services:
   mongodb:
     image: mongo
+    env_file:
+      - .env
     ports:
-      - 6050:27017
+      - "${EXTERNAL_PORT:-27017}:27017"
+    extra_hosts:
+      - 'host.docker.internal,${EXTRA_HOSTS}:host-gateway'
     environment:
       - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/MONGO_INITDB_ROOT_PASSWORD
       - MONGO_INITDB_ROOT_USERNAME_FILE=/run/secrets/MONGO_INITDB_ROOT_USERNAME
