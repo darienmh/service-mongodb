@@ -31,24 +31,34 @@ A collection of scripts for managing MongoDB databases with Docker.
 ## Scripts
 
 ### Database Management
-- `create-database.sh <username>` - Create a new database and user
+- `create-database.sh <username>` - Create a new database and user (requires local mongosh)
+- `create-database-container.sh <username>` - Create a new database and user using temporary container
 - `backup-mongodb.sh <mongodb_uri>` - Create a backup of a database
 - `restore-mongodb.sh <backup_dir> <mongodb_uri>` - Restore a database from backup
 
 ### Docker Swarm Management
 - `create-secrects.sh` - Create Docker secrets for MongoDB credentials
 
-## Docker Compose
+## Usage Examples
 
-### Development
+### Creating Databases
+
+**With local mongosh installed:**
 ```bash
-docker compose up -d
+./create-database.sh john
 ```
 
-### Production (with secrets)
+**Without local mongosh (using container):**
 ```bash
-docker stack deploy -c docker-compose-stack.yml mongodb
+./create-database-container.sh john
 ```
+
+Both scripts will:
+- Create database: `john_db`
+- Create user: `john` with random password
+- Grant readWrite and read permissions
+- Create initial `users` collection
+- Display connection information
 
 ## Contributing
 
